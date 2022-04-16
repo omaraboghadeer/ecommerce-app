@@ -25,7 +25,7 @@ export default function Navbar() {
                         </li>
                         <li>
                             <Link href='/products'>
-                                <a className={`text-base text-gray-800 hover:bg-emerald-700 hover:text-slate-300 transition-all p-2 mx-3 ${router.pathname == "/products" ? "bg-emerald-700 text-slate-300" : ""} `}>Products</a>
+                                <a className={`text-base text-gray-800 hover:bg-emerald-700 hover:text-slate-300 transition-all p-2 mx-3 ${router.pathname.includes('/products') ? "bg-emerald-700 text-slate-300" : ""} `}>Products</a>
                             </Link>
                         </li>
                         <li>

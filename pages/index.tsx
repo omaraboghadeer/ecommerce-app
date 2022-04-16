@@ -1,4 +1,4 @@
-import type { NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import SwiperCore, { Autoplay, Navigation, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -16,8 +16,9 @@ SwiperCore.use([Autoplay])
 const Home: NextPage = () => {
 
   let products: any[] = Array(5).fill({
-    name: 'product name',
-    price: '19,856 EGP',
+    id: 1,
+    title: 'product name',
+    price: '19,856',
     image: productImage
   });
 
@@ -35,42 +36,59 @@ const Home: NextPage = () => {
           Welcome to E-Commerce App
         </h1>
 
-        <div className='mt-6'>
-          <Swiper
-            modules={[Pagination]}
-            speed={500}
-            autoplay={{ delay: 2500, disableOnInteraction: false }}
-            loop={true}
-            slidesPerView={1}
-            pagination={{ clickable: true }}
-          >
-            <SwiperSlide>
-              <div className='bg-slate-300 rounded-md shadow h-72 text-amber-500'>
-                image 1
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className='bg-slate-300 rounded-md shadow h-72 text-amber-500'>
-                image 2
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className='bg-slate-300 rounded-md shadow h-72 text-amber-500'>
-                image 3
-              </div>
-            </SwiperSlide>
-          </Swiper>
+        <div className='flex flex-col md:flex-row mt-6'>
+          <div className='md:w-1/4 flex flex-col mr-3'>
+            <div className="card h-52 bg-red-600 rounded shadow flex justify-center items-center mb-3">
+            <p className="text-2xl text-white">Banner 1</p>
+            </div>
+            <div className="card h-52 bg-red-600 rounded shadow flex justify-center items-center">
+              <p className="text-2xl text-white">Banner 2</p>
+            </div>
+          </div>
+          
+          <div className='md:w-3/4 h-auto'>
+            <Swiper
+              modules={[Pagination]}
+              speed={500}
+              autoplay={{ delay: 2500, disableOnInteraction: false }}
+              loop={true}
+              slidesPerView={1}
+              pagination={{ clickable: true }}
+              className="h-full"
+            >
+              <SwiperSlide>
+                <div className='bg-slate-300 rounded-md shadow h-full flex justify-center items-center'>
+                  <p className='text-2xl capitalize text-blue-600'>image 1</p>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className='bg-slate-300 rounded-md shadow h-full flex justify-center items-center'>
+                  <p className='text-2xl capitalize text-blue-600'>image 2</p>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className='bg-slate-300 rounded-md shadow h-full flex justify-center items-center'>
+                  <p className='text-2xl capitalize text-blue-600'>image 3</p>
+                </div>
+              </SwiperSlide>
+            </Swiper>
+          </div>
         </div>
 
-        <div className='flex mt-6'>
+        <div className='flex flex-col md:flex-row mt-6'>
 
-          <div className='w-1/4'>
+          <div className='md:w-1/4'>
             <h2 className='capitalize text-3xl'>Category Name</h2>
           </div>
-          <div className='w-3/4'>
+          <div className='md:w-3/4'>
               <Swiper
                 modules={[Navigation]}
-                slidesPerView={3}
+                breakpoints={{
+                  320: {slidesPerView: 1},
+                  440: {slidesPerView: 2},
+                  720: {slidesPerView: 3},
+                  991: {slidesPerView: 4},
+                }}
                 navigation={true}
                 speed={500}
                 spaceBetween={15}
@@ -98,12 +116,15 @@ const Home: NextPage = () => {
 }
 
 export default Home
-/**
- * <div className="card">
-                        <Image src={product.image} height={200} />
-                        <div>
-                          <h5 className='text-2xl'>{product.name}</h5>
-                          <h4 className='text-green-600 text-3xl'>{product.price}</h4>
-                        </div>
-                      </div>
- */
+
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   const response = await fetch('https://fakestoreapi.com/products/categories');
+//   const data = await response.json();
+
+//   return {
+//     props: {
+//       categories: data
+//     }
+//   }
+
+// }

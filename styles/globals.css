@@ -9,6 +9,20 @@
     padding: theme('spacing.6');
     box-shadow: theme('boxShadow.DEFAULT');
     text-transform: capitalize;
+    display: block;
+  }
+
+  .card img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    margin: auto;
+  }
+
+  .card h5 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
